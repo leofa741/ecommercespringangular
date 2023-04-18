@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <p *ngIf="products.length === 0">No products found.</p>
+    <div class="col-md-12" >
+
+     <table class="table table-striped">
+       <thead class=" table-dark"> 
+         <tr>
+           <th scope="col">Name</th>
+           <th scope="col">Price</th>
+           <th scope="col">Quantity</th>
+           <th scope="col">Action</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let product of products">
+           <td>{{product.name}}</td>
+           <td>{{product.unitPrice}}</td>
+           <td>{{product.unitsInStock}}</td>
+           <td>
+             <button class="btn btn-primary">Add to Cart</button>
+           </td>
+         </tr>
+       </tbody>
+        </table>
+  
+    
+    </div>
+  </div>
