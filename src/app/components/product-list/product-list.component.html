@@ -3,46 +3,63 @@
         <div class="container-fluid">
             <div class="row">
 
-                <div class="overview-wrap" *ngIf="productCategories">
+                <div class="overview-wrap">
                     <h2 class="title-1">Products</h2>
-               
 
-                   
                     <a class="btn btn-primary" routerLink="/products/new">
                         <i class="zmdi zmdi-plus"></i>add item</a>
-                  
+
                 </div>
-               
 
-                <div class="col-md-4" *ngFor=" let product of products">                
 
-                  
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">{{product.name}}</strong>
-                            </div>
-                            <div class="card-body">
-                                <div class="mx-auto d-block">
-                                    <img class=" mx-auto d-block" [src]="product.imageUrl" alt="Card image cap">
-                                    <h5 class="text-sm-center mt-2 mb-1">{{product.unitPrice}}</h5>
-                                    <div class="location text-sm-center">
-                                        <i class="fa fa-map-marker"></i> {{product.description}}
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="card-text text-sm-center">
-                                    <a href="#" class="btn btn-primary btn-sm">
-                                        <i class="fa fa-info "></i> View
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-sm">
-                                        <i class="fa-solid fa-cart-shopping fa-beat"></i>Purchase
-                                    </a>
+                <div class="col-md-4" *ngFor=" let product of products">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <a  routerLink="/products/{{product.id}}">                               
+                            <strong class="card-title">{{product.name}}</strong>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="mx-auto d-block">
+                                <a  routerLink="/products/{{product.id}}">                                   
+                                <img class=" mx-auto d-block" [src]="product.imageUrl" alt="Card image cap">
+                                </a>
+                                <h5 class="text-sm-center mt-2 mb-1">{{product.unitPrice}}</h5>
+                                <div class="location text-sm-center">
+                                    <i class="fa fa-map-marker"></i> {{product.description}}
                                 </div>
                             </div>
+                            <hr>
+                            <div class="card-text text-sm-center">
+                                <a href="#" class="btn btn-primary btn-sm" routerLink="/products/{{product.id}}">
+                                    <i class="fa fa-info "></i> View
+                                </a>
+                                <a href="#" class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-cart-shopping fa-beat"></i>Purchase
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="products?.length == 0">
+
+                        <div class="card-header">
+                            <strong class="card-title">No Products</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div *ngIf="products?.length == 0">
+
+                    <div class="card-header text-center mt-5 mb-5 alert alert-danger">
+                        <strong class="card-title">No Products</strong>
                     </div>
                 </div>
 
-                
+
+
 
             </div>
         </div>

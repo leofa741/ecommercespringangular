@@ -9,11 +9,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
+import { DetailsComponent } from './components/details/details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'search/:keyword', component: ProductListComponent},
   { path: 'products', component: ProductListComponent } ,
+  { path: 'products/:id', component: DetailsComponent },
   { path: 'category/:id', component: ProductListComponent},
   { path: 'category', component: ProductListComponent },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -26,7 +28,8 @@ const routes: Routes = [
     ProductListComponent,
     HomeComponent,
     ProductCategoryMenuComponent,
-    SearchComponent
+    SearchComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
