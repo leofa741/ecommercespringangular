@@ -1,0 +1,324 @@
+<div class="main-content page-m">
+    <div class="section-contetnt section-content-p30">
+        <div class="container-fluid">
+            <form [formGroup]="checkoutFormGroup" class="col-md-12" (ngSubmit)="onSubmit()">
+
+                <!--customer -->
+                <div formGroupName="customer" class="form-area col-md-12">
+                    <h3 class="col-md-2">Customer</h3>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="firstName" class=" form-control-label">Nombre</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="firstName" formControlName="firstName" class="form-control">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="lastName" class=" form-control-label">apellido</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="lastName" formControlName="lastName" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="email" class=" form-control-label">Email</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="email" formControlName="email" class="form-control">
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--address -->
+                <div formGroupName="shippingAddress" class="form-area col-md-12">
+                    <h3 class="col-md-5">Shipping Address</h3>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="country" class=" form-control-label">Country</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <select id="country" formControlName="country" class="form-control">
+                                <option value="USA">USA</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Mexico">Mexico</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="city" class=" form-control-label">City</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="city" formControlName="city" class="form-control">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="state" class=" form-control-label">State</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <select id="state" formControlName="state" class="form-control">
+                                <option value="California">California</option>
+                                <option value="Texas">Texas</option>
+                                <option value="Florida">Florida</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="street" class=" form-control-label">Street</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="street" formControlName="street" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="zipCode" class=" form-control-label">Zip Code</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="zipCode" formControlName="zipCode" class="form-control">
+                        </div>
+                    </div>
+
+                </div>
+                <!-- add checkout form -->
+                <div class="form-area col-md-12">
+                    <label class="col-md-12">
+                        <input type="checkbox" (click)="copyShippingAddressToBillingAddress($event)"> Same as shipping
+                        address
+                    </label>
+                </div>
+                <!--billing address -->
+                <div formGroupName="billingAddress" class="form-area col-md-12">
+                    <h3 class="col-md-5"> Billing Address</h3>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="country" class=" form-control-label">Country</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <select id="country" formControlName="country" class="form-control">
+                                <option value="USA">USA</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Mexico">Mexico</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="city" class=" form-control-label">City</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="city" formControlName="city" class="form-control">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="state" class=" form-control-label">State</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <select id="state" formControlName="state" class="form-control">
+                                <option value="California">California</option>
+                                <option value="Texas">Texas</option>
+                                <option value="Florida">Florida</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="street" class=" form-control-label">Street</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="street" formControlName="street" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="zipCode" class=" form-control-label">Zip Code</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="zipCode" formControlName="zipCode" class="form-control">
+                        </div>
+                    </div>
+
+                </div>
+                <!--credit card -->
+                <div formGroupName="creditCard" class="form-area">
+                    <h3 class="title-5 m-b-35">Credit Card</h3>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="cardType" class=" form-control-label">Card Type</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <select id="cardType" formControlName="cardType" class="form-control">
+                                <option value="Visa">Visa</option>
+                                <option value="MasterCard">MasterCard</option>
+                                <option value="American Express">American Express</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="nameOnCard" class=" form-control-label">Name on Card</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="nameOnCard" formControlName="nameOnCard" class="form-control">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="cardNumber" class=" form-control-label">Card Number</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="cardNumber" formControlName="cardNumber" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="securityCode" class=" form-control-label">Security Code</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <input type="text" id="securityCode" formControlName="securityCode" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="expirationMonth" class=" form-control-label">Expiration Month</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <select id="expirationMonth" formControlName="expirationMonth" class="form-control">
+
+                                <option value="01">01 - January</option>
+                                <option value="02">02 - February</option>
+                                <option value="03">03 - March</option>
+                                <option value="04">04 - April</option>
+                                <option value="05">05 - May</option>
+                                <option value="06">06 - June</option>
+                                <option value="07">07 - July</option>
+                                <option value="08">08 - August</option>
+                                <option value="09">09 - September</option>
+                                <option value="10">10 - October</option>
+                                <option value="11">11 - November</option>
+                                <option value="12">12 - December</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="expirationYear" class=" form-control-label">Expiration Year</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <select id="expirationYear" formControlName="expirationYear" class="form-control">
+
+                                <option value="01">01 - January</option>
+                                <option value="02">02 - February</option>
+                                <option value="03">03 - March</option>
+                                <option value="04">04 - April</option>
+                                <option value="05">05 - May</option>
+                                <option value="06">06 - June</option>
+                                <option value="07">07 - July</option>
+                                <option value="08">08 - August</option>
+                                <option value="09">09 - September</option>
+                                <option value="10">10 - October</option>
+                                <option value="11">11 - November</option>
+                                <option value="12">12 - December</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!--end credit card -->
+
+                <!--Review order -->
+
+                <div class="form-area">
+                    <h3 class="title-5 m-b-35">Review Order</h3>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="total" class=" form-control-label">Total</label>
+                        </div>
+                        <div class="col-md-10 ">
+                           <label for="total" class=" form-control-label">{{ totalPrice}}</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for=" totalQuantity" class=" form-control-label"> totalQuantity</label>
+                        </div>
+                        <div class="col-md-10 ">
+                           <label for=" totalQuantity" class=" form-control-label">{{ totalQuantity}}</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="shipping" class=" form-control-label">Shipping</label>
+                        </div>
+                        <div class="col-md-10 ">
+                           <label for="shipping" class=" form-control-label">{{shipping}}</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="orderTotal" class=" form-control-label">Order Total</label>
+                        </div>
+                        <div class="col-md-10 ">
+                           <label for="orderTotal" class=" form-control-label">{{orderTotal}}</label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                    <div class="form-area">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> Submit
+                        </button>
+
+                    </div>
+
+                
+                
+
+            </form>
+
+
+        </div>
+    </div>
+</div>

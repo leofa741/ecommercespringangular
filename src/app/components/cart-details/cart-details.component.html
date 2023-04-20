@@ -18,6 +18,7 @@
                 <th scope="col">Cantidad</th>
                 <th scope="col">Total</th>
                 <th scope="col">Acción</th>
+            
                
             </tr>
         </thead>
@@ -53,8 +54,15 @@
                 </td>              
                 <td>{{totalPrice}}</td>
                 <td colspan="2">
-                    <button class="btn btn-sm btn-outline-secondary" (click)="clear()">Limpiar</button>
+                    <button class="btn btn-sm btn-outline-secondary" (click)="clear()"> <i class="fa fa-trash"></i> Limpiar  </button>
+                    <br>
+                    <br>
+              
+                    <a  routerLink="/checkout"  class="btn btn-sm btn-outline-secondary" >
+                        <i class="fa fa-credit-card"></i> Comprar</a >
                 </td>
+
+
             </tr>
         </tbody>
     </table>
