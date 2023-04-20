@@ -10,6 +10,10 @@ import { HomeComponent } from './components/home/home.component';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { DetailsComponent } from './components/details/details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -29,12 +33,15 @@ const routes: Routes = [
     HomeComponent,
     ProductCategoryMenuComponent,
     SearchComponent,
-    DetailsComponent
+    DetailsComponent,
+    CartStatusComponent,
+    CartDetailsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgbModule
 
   ],
   providers: [

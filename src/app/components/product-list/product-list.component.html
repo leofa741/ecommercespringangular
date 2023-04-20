@@ -35,33 +35,65 @@
                                 <a href="#" class="btn btn-primary btn-sm" routerLink="/products/{{product.id}}">
                                     <i class="fa fa-info "></i> View
                                 </a>
-                                <a href="#" class="btn btn-danger btn-sm">
-                                    <i class="fa-solid fa-cart-shopping fa-beat"></i>Purchase
-                                </a>
+                                <button href="#" class="btn btn-primary btn-sm" (click)="addToCart(product)">
+                                    <i class="fa-solid fa-cart-shopping fa-beat"></i> Add to cart
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="products?.length == 0">
-
-                        <div class="card-header">
-                            <strong class="card-title">No Products</strong>
-                        </div>
-
-                    </div>
-
+                   
                 </div>
 
                 <div *ngIf="products?.length == 0">
-
                     <div class="card-header text-center mt-5 mb-5 alert alert-danger">
                         <strong class="card-title">No Products</strong>
                     </div>
                 </div>
 
+            </div> 
+        </div>  
 
-
-
+        <div class="footer-pagination">
+            <div class="row">
+                <div class="col-md-6" style="text-align: left;">
+                  
+                 
+    
+                <ngb-pagination
+                    [collectionSize]="theTotalElements"
+                    [(page)]="thePageNumber"
+                    [pageSize]="thePageSize"
+                    [rotate]="true"
+                    [boundaryLinks]="true"
+                    [maxSize]="3"
+                    (pageChange)="listProducts()">
+    
+    
+                    <ng-template ngbPaginationFirst>First</ng-template>
+                    <ng-template ngbPaginationPrevious>Previous</ng-template>
+                    <ng-template ngbPaginationNext>Next</ng-template>
+                    <ng-template ngbPaginationLast>Last</ng-template>
+    
+                </ngb-pagination>                 
+               </div>
             </div>
         </div>
+          
     </div>
+
+   
+
+    <div class="col-md-3 mr-2 form-control " style="text-align: right;" >
+        <span> page size:</span>     
+            <select #pageSize    (change)="updatePageSize(pageSize.value)">           
+              <option selected="selected" value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+            </select>        
+    </div>  
+
+
+
+
 </div>
