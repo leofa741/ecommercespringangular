@@ -1,1 +1,64 @@
-<p>cart-details works!</p>
+
+
+<div  class="main-content">
+
+    <h1>Carrito de compras</h1>
+
+    <div *ngIf="cartItems.length == 0" class="alert alert-warning">
+        No hay productos en el carrito de compras
+    
+    </div>
+
+    <table class="table table-striped" *ngIf="cartItems.length > 0">
+        <thead>
+            <tr class="table-primary">
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Total</th>
+                <th scope="col">Acción</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cartItems">
+                <td><img [src]="item.imageUrl" alt="item.name" width="50" height="50"></td>
+                <td>{{item.name}}</td>
+                <td>{{item.unitPrice}}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-secondary" (click)="decrementQuantity(item)">-</button>
+                    <span class="badge badge-secondary">{{item.quantity}}</span>
+                    <button class="btn btn-sm btn-outline-secondary" (click)="incrementQuantity(item)">+</button>
+                </td>
+                <td>{{item.unitPrice * item.quantity}}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-danger" (click)="remove(item)">Eliminar</button>
+                </td>
+              
+            </tr>
+
+            <tr>
+
+                <td colspan="2" class="text-right">Total</td>
+                <span class="badge badge-secondary"
+                    *ngIf="totalQuantity > 0"> detalle del carrito</span>
+
+                <td  class="text-right">{{totalQuantity}} : 
+                    <span class="badge badge-secondary"
+                    *ngIf="totalQuantity == 1">item</span>
+                    <span class="badge badge-secondary"
+                    *ngIf="totalQuantity > 1">items</span>
+
+                </td>              
+                <td>{{totalPrice}}</td>
+                <td colspan="2">
+                    <button class="btn btn-sm btn-outline-secondary" (click)="clear()">Limpiar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+</div>
