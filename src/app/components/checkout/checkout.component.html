@@ -13,7 +13,23 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="firstName" formControlName="firstName" class="form-control">
+             
+                            <div *ngIf="firstName!.invalid && (firstName!.dirty || firstName!.touched)"    class="alert alert-danger">
+                                <div *ngIf="firstName!.errors ">
+                                    El nombre es requerido
+                                </div>                             
+
+                                <div *ngIf="firstName!.errors">
+                                    El nombre debe tener al menos 2 caracteres
+
+                                </div>
+                            </div>
                         </div>
+
+                        
+
+                        
+
                     </div>
 
 
@@ -23,6 +39,19 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="lastName" formControlName="lastName" class="form-control">
+
+                            <div *ngIf="lastName!.invalid && (lastName!.dirty || lastName!.touched)"    class="alert alert-danger">
+                                <div *ngIf="lastName!.errors  ">
+                                    El apellido es requerido
+                                </div>
+
+                                <div *ngIf="lastName!.errors">
+                                    El apellido debe tener al menos 2 caracteres
+
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
 
@@ -32,6 +61,16 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="email" formControlName="email" class="form-control">
+
+                            <div *ngIf="email!.invalid && (email!.dirty || email!.touched)"    class="alert alert-danger">
+                                <div *ngIf="email!.errors">
+                                    El email es requerido
+                                </div>
+
+                                <div *ngIf="email!.errors">
+                                    El email es invalido
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -45,11 +84,49 @@
                             <label for="country" class=" form-control-label">Country</label>
                         </div>
                         <div class="col-md-10 input-space">
-                            <select id="country" formControlName="country" class="form-control">
-                                <option value="USA">USA</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Mexico">Mexico</option>
+                            <select  formControlName="country" (change)="getStates('shippingAddress')" >
+                                <option *ngFor="let tempCountry of countries" [ngValue]="tempCountry">
+                                    {{tempCountry.name}}
+                                </option>
                             </select>
+
+                            <div *ngIf="shippingAddressCountry!.invalid && (shippingAddressCountry!.dirty || shippingAddressCountry!.touched)"    class="alert alert-danger">
+                                <div *ngIf="shippingAddressCountry!.errors">
+                                    El pais es requerido
+                                </div>
+
+                                <div *ngIf="shippingAddressCountry!.errors">
+                                    El pais debe tener al menos 2 caracteres
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="state" class=" form-control-label">State</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <select id="state" formControlName="state" class="form-control">
+                                <option *ngFor="let tempState of shippingAddressStates" [ngValue]="tempState">
+                                    {{tempState.name}}
+                                </option>
+                            </select>
+
+                            <div *ngIf="shippingAddressState!.invalid && (shippingAddressState!.dirty || shippingAddressState!.touched)"    class="alert alert-danger">
+                                <div *ngIf="shippingAddressState!.errors">
+                                    El estado es requerido
+                                </div>
+
+                                <div *ngIf="shippingAddressState!.errors">
+                                    El estado debe tener al menos 2 caracteres
+
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -59,22 +136,19 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="city" formControlName="city" class="form-control">
-                        </div>
-                    </div>
 
+                            <div *ngIf="shippingAddressCity!.invalid && (shippingAddressCity!.dirty || shippingAddressCity!.touched)"    class="alert alert-danger">
+                                <div *ngIf="shippingAddressCity!.errors">
+                                    La ciudad es requerida
+                                </div>
 
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label for="state" class=" form-control-label">State</label>
+                                <div *ngIf="shippingAddressCity!.errors">
+                                    La ciudad debe tener al menos 2 caracteres
+
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-10 input-space">
-                            <select id="state" formControlName="state" class="form-control">
-                                <option value="California">California</option>
-                                <option value="Texas">Texas</option>
-                                <option value="Florida">Florida</option>
-                            </select>
-                        </div>
-                    </div>
+                    </div>                  
 
                     <div class="row">
                         <div class="col-md-2">
@@ -82,19 +156,42 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="street" formControlName="street" class="form-control">
-                        </div>
-                    </div>
 
+                            <div *ngIf="shippingAddressStreet!.invalid && (shippingAddressStreet!.dirty || shippingAddressStreet!.touched)"    class="alert alert-danger">
+                                <div *ngIf="shippingAddressStreet!.errors">
+                                    La calle es requerida
+                                </div>
+
+                                <div *ngIf="shippingAddressStreet!.errors">
+                                    La calle debe tener al menos 2 caracteres
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        
                     <div class="row">
                         <div class="col-md-2">
                             <label for="zipCode" class=" form-control-label">Zip Code</label>
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="zipCode" formControlName="zipCode" class="form-control">
+
+                            <div *ngIf="shippingAddressZipCode!.invalid && (shippingAddressZipCode!.dirty || shippingAddressZipCode!.touched)"    class="alert alert-danger">
+                                <div *ngIf="shippingAddressZipCode!.errors">
+                                    El codigo postal es requerido
+                                </div>
+
+                                <div *ngIf="shippingAddressZipCode!.errors">
+                                    El codigo postal debe tener al menos 2 caracteres
+
+                                </div>
                         </div>
                     </div>
+                    </div>
+                    </div>
 
-                </div>
+                
+                
                 <!-- add checkout form -->
                 <div class="form-area col-md-12">
                     <label class="col-md-12">
@@ -110,11 +207,47 @@
                             <label for="country" class=" form-control-label">Country</label>
                         </div>
                         <div class="col-md-10 input-space">
-                            <select id="country" formControlName="country" class="form-control">
-                                <option value="USA">USA</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Mexico">Mexico</option>
+                            <select id="country" formControlName="country" (change)="getStates('billingAddress')">
+                                <option *ngFor="let tempCountry of countries" [ngValue]="tempCountry">
+                                    {{tempCountry.name}}
+                                </option>
                             </select>
+
+                            <div *ngIf="billingAddressCountry!.invalid && (billingAddressCountry!.dirty || billingAddressCountry!.touched)"    class="alert alert-danger">
+                                <div *ngIf="billingAddressCountry!.errors">
+                                    El pais es requerido
+                                </div>
+
+                                <div *ngIf="billingAddressCountry!.errors">
+                                    El pais debe tener al menos 2 caracteres
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="state" class=" form-control-label">State</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <select id="state" formControlName="state" class="form-control">
+                                <option *ngFor="let tempState of billingAddressStates" [ngValue]="tempState">
+                                    {{tempState.name}}
+                                </option>
+                            </select>
+
+                            <div *ngIf="billingAddressState!.invalid && (billingAddressState!.dirty || billingAddressState!.touched)"    class="alert alert-danger">
+                                <div *ngIf="billingAddressState!.errors">
+                                    El estado es requerido
+                                </div>
+
+                                <div *ngIf="billingAddressState!.errors">
+                                    El estado debe tener al menos 2 caracteres
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -124,22 +257,23 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="city" formControlName="city" class="form-control">
+
+                            <div *ngIf="billingAddressCity!.invalid && (billingAddressCity!.dirty || billingAddressCity!.touched)"    class="alert alert-danger">
+                                <div *ngIf="billingAddressCity!.errors">
+                                    La ciudad es requerida
+                                </div>
+
+                                <div *ngIf="billingAddressCity!.errors">
+                                    La ciudad debe tener al menos 2 caracteres
+
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
 
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label for="state" class=" form-control-label">State</label>
-                        </div>
-                        <div class="col-md-10 input-space">
-                            <select id="state" formControlName="state" class="form-control">
-                                <option value="California">California</option>
-                                <option value="Texas">Texas</option>
-                                <option value="Florida">Florida</option>
-                            </select>
-                        </div>
-                    </div>
+              
 
                     <div class="row">
                         <div class="col-md-2">
@@ -147,6 +281,17 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="street" formControlName="street" class="form-control">
+
+                            <div *ngIf="billingAddressStreet!.invalid && (billingAddressStreet!.dirty || billingAddressStreet!.touched)"    class="alert alert-danger">
+                                <div *ngIf="billingAddressStreet!.errors">
+                                    La calle es requerida
+                                </div>
+
+                                <div *ngIf="billingAddressStreet!.errors">
+                                    La calle debe tener al menos 2 caracteres
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -156,6 +301,18 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="zipCode" formControlName="zipCode" class="form-control">
+
+                            <div *ngIf="billingAddressZipCode!.invalid && (billingAddressZipCode!.dirty || billingAddressZipCode!.touched)"    class="alert alert-danger">
+                                <div *ngIf="billingAddressZipCode!.errors">
+                                    El codigo postal es requerido
+                                </div>
+
+                                <div *ngIf="billingAddressZipCode!.errors">
+                                    El codigo postal debe tener al menos 2 caracteres
+
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -174,6 +331,18 @@
                                 <option value="MasterCard">MasterCard</option>
                                 <option value="American Express">American Express</option>
                             </select>
+
+                            <div *ngIf="creditCardCardType!.invalid && (creditCardCardType!.dirty || creditCardCardType!.touched)"    class="alert alert-danger">
+                                <div *ngIf="creditCardCardType!.errors">
+                                    El tipo de tarjeta es requerido
+                                </div>
+
+                                <div *ngIf="creditCardCardType!.errors">
+                                    El tipo de tarjeta debe tener al menos 2 caracteres
+
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
@@ -185,6 +354,18 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="nameOnCard" formControlName="nameOnCard" class="form-control">
+
+                            <div *ngIf="creditCardNameOnCard!.invalid && (creditCardNameOnCard!.dirty || creditCardNameOnCard!.touched)"    class="alert alert-danger">
+                                <div *ngIf="creditCardNameOnCard!.errors">
+                                    El nombre en la tarjeta es requerido
+                                </div>
+
+                                <div *ngIf="creditCardNameOnCard!.errors">
+                                    El nombre en la tarjeta debe tener al menos 2 caracteres
+
+                                </div>
+                                </div>
+
                         </div>
                     </div>
 
@@ -195,6 +376,18 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="cardNumber" formControlName="cardNumber" class="form-control">
+
+                            <div *ngIf="creditCardNumber!.invalid && (creditCardNumber!.dirty || creditCardNumber!.touched)"    class="alert alert-danger">
+                                <div *ngIf="creditCardNumber!.errors">
+                                    El numero de tarjeta es requerido
+                                </div>
+
+                                <div *ngIf="creditCardNumber!.errors">
+                                    El numero de tarjeta debe tener al menos 2 caracteres
+
+                                </div>
+                                </div>
+
                         </div>
                     </div>
 
@@ -204,6 +397,35 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <input type="text" id="securityCode" formControlName="securityCode" class="form-control">
+
+                            <div *ngIf="creditCardSecurityCode!.invalid && (creditCardSecurityCode!.dirty || creditCardSecurityCode!.touched)"    class="alert alert-danger">
+                                <div *ngIf="creditCardSecurityCode!.errors">
+                                    El codigo de seguridad es requerido
+                                </div>
+
+                                <div *ngIf="creditCardSecurityCode!.errors">
+                                    El codigo de seguridad debe tener al menos 2 caracteres
+
+                                </div>
+
+                                </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="expirationYear" class=" form-control-label">Expiration Year</label>
+                        </div>
+                        <div class="col-md-10 input-space">
+                            <select id="expirationYear" formControlName="expirationYear" class="form-control" (change)="handleMonthsAndYears()">
+
+                                <option *ngFor="let year of creditCardYears" >
+                                    {{year}}
+                                </option>
+                            </select>
+
                         </div>
                     </div>
 
@@ -213,49 +435,13 @@
                         </div>
                         <div class="col-md-10 input-space">
                             <select id="expirationMonth" formControlName="expirationMonth" class="form-control">
-
-                                <option value="01">01 - January</option>
-                                <option value="02">02 - February</option>
-                                <option value="03">03 - March</option>
-                                <option value="04">04 - April</option>
-                                <option value="05">05 - May</option>
-                                <option value="06">06 - June</option>
-                                <option value="07">07 - July</option>
-                                <option value="08">08 - August</option>
-                                <option value="09">09 - September</option>
-                                <option value="10">10 - October</option>
-                                <option value="11">11 - November</option>
-                                <option value="12">12 - December</option>
+                                <option *ngFor="let month of creditCardMonths" >
+                                    {{month}}
+                                </option>
                             </select>
 
                         </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label for="expirationYear" class=" form-control-label">Expiration Year</label>
-                        </div>
-                        <div class="col-md-10 input-space">
-                            <select id="expirationYear" formControlName="expirationYear" class="form-control">
-
-                                <option value="01">01 - January</option>
-                                <option value="02">02 - February</option>
-                                <option value="03">03 - March</option>
-                                <option value="04">04 - April</option>
-                                <option value="05">05 - May</option>
-                                <option value="06">06 - June</option>
-                                <option value="07">07 - July</option>
-                                <option value="08">08 - August</option>
-                                <option value="09">09 - September</option>
-                                <option value="10">10 - October</option>
-                                <option value="11">11 - November</option>
-                                <option value="12">12 - December</option>
-                            </select>
-
-                        </div>
-                    </div>
-
+                    </div>  
                 </div>
                 <!--end credit card -->
 
@@ -306,12 +492,12 @@
 
 
 
-                    <div class="form-area">
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="fa fa-dot-circle-o"></i> Submit
+                   
+                        <button type="submit" class="btn btn-primary btn-md"  >
+                              <i class="fa fa-dot-circle-o"></i> Submit
                         </button>
 
-                    </div>
+                    
 
                 
                 
