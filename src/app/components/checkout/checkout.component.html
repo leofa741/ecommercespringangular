@@ -91,7 +91,7 @@
                             </select>
 
                             <div *ngIf="shippingAddressCountry!.invalid && (shippingAddressCountry!.dirty || shippingAddressCountry!.touched)"    class="alert alert-danger">
-                                <div *ngIf="shippingAddressCountry!.errors">
+                                <div *ngIf="shippingAddressCountry!.errors ">
                                     El pais es requerido
                                 </div>
 
@@ -99,6 +99,8 @@
                                     El pais debe tener al menos 2 caracteres
 
                                 </div>
+
+
                             </div>
 
 
@@ -202,6 +204,7 @@
                 <!--billing address -->
                 <div formGroupName="billingAddress" class="form-area col-md-12">
                     <h3 class="col-md-5"> Billing Address</h3>
+
                     <div class="row">
                         <div class="col-md-2">
                             <label for="country" class=" form-control-label">Country</label>
@@ -493,7 +496,7 @@
 
 
                    
-                        <button type="submit" class="btn btn-primary btn-md"  >
+                        <button type="submit" class="btn btn-primary btn-md"  [disabled]="!checkoutFormGroup.valid"      >
                               <i class="fa fa-dot-circle-o"></i> Submit
                         </button>
 
