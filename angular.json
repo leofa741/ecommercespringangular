@@ -10,9 +10,16 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
-        "build": {
+        "build": {         
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "p-cancelable",
+              "cross-fetch",
+              "tiny-emitter",
+              "detect-node",
+              "@okta/okta-signin-widget"
+            ],
             "outputPath": "dist/angular-ecommerce",
             "index": "src/index.html",
             "main": "src/main.ts",
