@@ -6,18 +6,29 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  
+ 
  
   cartItems: CartItem[]= [];
 
   totalPrice: Subject<number> = new BehaviorSubject<number>(0); 
   totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
 
+ //  storage: Storage = sessionStorage;
+ storage: Storage = localStorage;
 
 
-  constructor(
 
-  ) { }
+  constructor( ) {
+    // read data from storage
+    let data = JSON.parse(this.storage.getItem('cartItems')!);
+
+    if (data != null) {
+      this.cartItems = data;
+
+      // compute totals based on the data that is read from storage
+      this.computeCartTotals();
+    }   
+  }
 
   addToCart(theCartItem: CartItem) {
       
@@ -40,7 +51,7 @@ export class CartService {
       }
       else {
         // just add the item to the array
-        this.cartItems.push(theCartItem);
+        this.cartItems.push(theCartItem); 
       }
   
       // compute cart total price and total quantity
@@ -62,7 +73,13 @@ export class CartService {
     
         // log cart data just for debugging purposes
         this.logCartData(totalPriceValue, totalQuantityValue);
+        
+        // persist cart data
+
+        this.persistCartItems();
+
       }
+
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
       
           console.log('Contents of the cart');
@@ -101,9 +118,18 @@ export class CartService {
           else {
             this.computeCartTotals();
           }
+        }     
+        
+        persistCartItems() {
+          this.storage.setItem('cartItems', JSON.stringify(this.cartItems));
         }
 
-       
+        updateCart(cart: any) {
+          this.cartItems = cart;
+          this.computeCartTotals();
+        }
+        
+
 
   }
 

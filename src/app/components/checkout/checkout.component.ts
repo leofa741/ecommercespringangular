@@ -32,6 +32,8 @@ export class CheckoutComponent implements OnInit {
 
   shippingAddressStates: State[] = [];
   billingAddressStates: State[] = [];
+
+  storage: Storage = sessionStorage;
  
 
 
@@ -48,11 +50,18 @@ export class CheckoutComponent implements OnInit {
 
     this.reviewCartDetails();    
 
+    // read the user's email address from browser storage
+
+    const theEmail = JSON.parse(this.storage.getItem('userEmail')!);
+
+    
+
+
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('', [Validators.required, Validators.minLength(2), Formvalidators.notOnlyWhitespace]),
         lastName: new FormControl('', [Validators.required, Validators.minLength(2),Formvalidators.notOnlyWhitespace]),
-        email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),Formvalidators.notOnlyWhitespace]),
+        email: new FormControl( theEmail, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),Formvalidators.notOnlyWhitespace]),
       }),
       shippingAddress: this.formBuilder.group({
         street: new FormControl('', [Validators.required, Validators.minLength(2),Formvalidators.notOnlyWhitespace]),
@@ -228,11 +237,6 @@ export class CheckoutComponent implements OnInit {
       get creditCardNumber() { return this.checkoutFormGroup.get('creditCard.cardNumber'); }
       get creditCardSecurityCode() { return this.checkoutFormGroup.get('creditCard.securityCode'); }
 
-      
-
-
-
-
 
       
       copyShippingAddressToBillingAddress(event: any) {
@@ -315,14 +319,6 @@ export class CheckoutComponent implements OnInit {
           }
         );
       }
-
-
-
-    
-
-
-
-
       
       
 }

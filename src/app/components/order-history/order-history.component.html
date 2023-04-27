@@ -1,0 +1,45 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Order History</h1>
+      <hr />
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Order Date</th>
+              <th>Order Total</th>
+              <th>Order TotalQuantity</th>
+            
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of OrderHistory">
+              <td>{{ order.id }}</td>
+              <td>{{ order.dateCreated | date: "short" }}</td>
+              <td>{{ order.totalPrice | currency: "USD" }}</td>
+                <td>{{ order.totalQuantity }}</td>
+
+                
+
+            
+              <td>
+                <a
+                  [routerLink]="['/order-details', order.id]"
+                  class="btn btn-primary btn-sm"
+                >
+                  View
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="OrderHistory.length == 0">
+        <h3>You have no orders to display.</h3>
+      </div>
+    </div>
+  </div>
