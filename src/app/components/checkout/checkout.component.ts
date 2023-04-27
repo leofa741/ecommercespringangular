@@ -10,6 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { CheckoutService } from 'src/app/services/checkout.service';
 import { ShopFormService } from 'src/app/services/shop-form.service';
 import { Formvalidators } from 'src/app/validators/formvalidators';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-checkout',
@@ -204,13 +205,46 @@ export class CheckoutComponent implements OnInit {
         this.checkoutService.placeOrder(purchase).subscribe(
           {
             next: response => {
-              alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
-
+              //alert(`Your order has been received.\nOrder tracking number: ${response.orderTrackingNumber}`);
+Swal .fire({
+  title: 'Your order has been received',
+  text: `Order tracking number: ${response.orderTrackingNumber}`,
+  icon: 'success',
+  showCancelButton: false,
+  confirmButtonText: 'OK',
+  confirmButtonColor: '#3085d6',
+  allowOutsideClick: false,
+  allowEscapeKey: false,
+  allowEnterKey: false
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.resetCart();
+    this.router.navigateByUrl("/products");
+  }
+})
               // reset cart
               this.resetCart();
             },            
             error: err => {
-              alert(`There was an error: ${err.message}`);
+             Swal.fire({
+  title: 'Error',
+  text: `There was an error: ${err.message}`,
+  icon: 'error',
+  showCancelButton: false,
+  confirmButtonText: 'OK',
+  confirmButtonColor: '#3085d6',
+  allowOutsideClick: false,
+  allowEscapeKey: false,
+  allowEnterKey: false
+}).then((result) => {
+  if (result.isConfirmed) {
+    this.resetCart();
+    this.router.navigateByUrl("/products");
+
+  }})
+
+
+
             }
           }
         ); 
