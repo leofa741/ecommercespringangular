@@ -8,7 +8,7 @@ import { OrderHistory } from '../common/order-history';
 })
 export class OrderHistoryService {
 
-  private orderUrl = 'http://miecomerce.us-east-2.elasticbeanstalk.com/api/orders';
+  private orderUrl = 'https://ecommercespringback.vercel.app/api/orders';
 
   constructor(
      private httpClient: HttpClient

@@ -9,8 +9,8 @@ import { State } from '../common/state';
 })
 export class ShopFormService {
 
-  private countriesUrl = 'http://miecomerce.us-east-2.elasticbeanstalk.com/api/countries';
-  private statesUrl = 'http://miecomerce.us-east-2.elasticbeanstalk.com/api/states';
+  private countriesUrl = 'https://ecommercespringback.vercel.app/api/countries';
+  private statesUrl = 'https://ecommercespringback.vercel.app/api/states';
 
 
   constructor(

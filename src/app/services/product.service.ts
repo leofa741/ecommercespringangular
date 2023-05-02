@@ -10,8 +10,8 @@ import { ProductCategory } from '../common/product-category';
 })
 export class ProductService { 
  
-  private baseUrl = 'http://miecomerce.us-east-2.elasticbeanstalk.com/api/products';
-  private categoryUrl = 'http://miecomerce.us-east-2.elasticbeanstalk.com/api/product-category';
+  private baseUrl = 'https://ecommercespringback.vercel.app/api/products';
+  private categoryUrl = 'https://ecommercespringback.vercel.app/api/product-category';
 
   constructor(
     private httpClient: HttpClient

@@ -10,7 +10,7 @@ import { Customer } from '../common/customer';
 export class CheckoutService {
   
 
-  private baseUrl = 'http://miecomerce.us-east-2.elasticbeanstalk.com/api/checkout/purchase';
+  private baseUrl = 'https://ecommercespringback.vercel.app/api/checkout/purchase';
 
 
 
