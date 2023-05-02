@@ -10,7 +10,7 @@ import { Customer } from '../common/customer';
 export class CheckoutService {
   
 
-  private baseUrl = 'http://localhost:8080/api/checkout/purchase';
+  private baseUrl = 'http://miecomerce.us-east-2.elasticbeanstalk.com/api/checkout/purchase';
 
 
 

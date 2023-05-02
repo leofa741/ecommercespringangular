@@ -11,8 +11,7 @@
               <th>Order ID</th>
               <th>Order Date</th>
               <th>Order Total</th>
-              <th>Order TotalQuantity</th>
-            
+              <th>Order TotalQuantity</th>            
               <th>Order Tracking Number</th>
             </tr>
           </thead>
@@ -23,12 +22,7 @@
               <td>{{ order.totalPrice | currency: "USD" }}</td>
                 <td>{{ order.totalQuantity }}</td>
               <td>{{order.orderTrackingNumber}}</td>
-
-                
-
-            
-            
-            </tr>
+             </tr>
           </tbody>
         </table>
       </div>

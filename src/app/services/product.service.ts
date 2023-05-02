@@ -8,13 +8,10 @@ import { ProductCategory } from '../common/product-category';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService { 
  
- 
- 
-  private baseUrl = 'http://localhost:8080/api/products';
-
-  private categoryUrl = 'http://localhost:8080/api/product-category';
+  private baseUrl = 'http://miecomerce.us-east-2.elasticbeanstalk.com/api/products';
+  private categoryUrl = 'http://miecomerce.us-east-2.elasticbeanstalk.com/api/product-category';
 
   constructor(
     private httpClient: HttpClient

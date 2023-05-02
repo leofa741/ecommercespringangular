@@ -24,7 +24,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   private async handleAccess(req: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
 
-    const  secureEndpoints = ['http://localhost:8080/api/orders'];
+    const  secureEndpoints = ['http://miecomerce.us-east-2.elasticbeanstalk.com/api/orders'];
 
     if(secureEndpoints.some(url => req.urlWithParams.includes(url))){
 
